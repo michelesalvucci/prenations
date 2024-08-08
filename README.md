@@ -1,31 +1,9 @@
 # Pre Nations
+A simple (to be enriched) Java 17 Spring Boot JPA application.
 
 ## Feign Clients
 
 The service communicates with the "pre-people" service through FeignClient (`PRENPeopleFeignClient`).
-
-## Authentication
-
-Following properties were set:
-
-```
-spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          keycloak:
-            client-id: prenations-app
-            authorization-grant-type: authorization_code
-            scope: openid
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:9000/realms/PreNations
-            user-name-attribute: preferred_username
-        resourceserver:
-          jwt:
-            issuer-uri: http://localhost:9000/realms/PreNations
-```
 
 ## Development
 
@@ -69,6 +47,29 @@ To launch your application's tests, run:
 
 ```
 ./gradlew test integrationTest jacocoTestReport
+```
+
+## Authentication
+
+Following properties were set:
+
+```
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: prenations-app
+            authorization-grant-type: authorization_code
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9000/realms/PreNations
+            user-name-attribute: preferred_username
+        resourceserver:
+          jwt:
+            issuer-uri: http://localhost:9000/realms/PreNations
 ```
 
 ### OpenID

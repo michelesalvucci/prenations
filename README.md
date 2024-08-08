@@ -100,7 +100,6 @@ spring:
 - widely adopted across the industry for mobile apps, web APIs
 
 ## TODOs
-- fix Specification on Long filter field
 - unpair DTO paginate response and datasource Page class
 - tenant management with Hibernate filter
 - messages and responses internationalization

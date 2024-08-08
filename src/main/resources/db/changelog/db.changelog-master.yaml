@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - preConditions:
+      onFail: HALT
+      onError: HALT
+
+  # Initial schema including
+  - include:
+      file: 00000000000000_initial_schema.yml
+      relativeToChangelogFile: true

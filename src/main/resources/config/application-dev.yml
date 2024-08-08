@@ -1,0 +1,47 @@
+logging:
+  level:
+    ROOT: INFO
+    org.hibernate.SQL: DEBUG
+    com.michelesalvucci.prenations: DEBUG
+    org.springframework.boot:
+      autoconfigure: ERROR
+    liquibase: INFO
+
+spring:
+  jackson:
+    serialization:
+      indent-output: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/preNations?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: root
+    password:
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  messages:
+    cache-duration: PT1S # 1 second, see the ISO 8601 standard
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: prenations-app
+            authorization-grant-type: authorization_code
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9000/realms/PreNations
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          jws-algorithms: RS256
+          issuer-uri: http://localhost:9000/realms/PreNations
+
+server:
+  port: 8080

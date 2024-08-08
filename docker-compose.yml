@@ -1,0 +1,24 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.2
+    command: start-dev
+    container_name: keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - '9000:8080'
+    restart: always
+    volumes:
+      - ./docker-data/keycloak/:/opt/jboss/keycloak/standalone/data/
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: njaui@@#183asdvwerfv234563
+    volumes:
+      - ./docker-data/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306

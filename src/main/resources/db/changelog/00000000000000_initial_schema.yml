@@ -1,0 +1,104 @@
+databaseChangeLog:
+  # - preConditions:
+  #     - runningAs:
+  #         username: liquibase
+  - changeSet:
+      id: "00000000000001"
+      author: michele.salvucci
+      changes:
+        - createTable:
+            tableName: pren_cities
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: population
+                  type: bigint
+              - column:
+                  name: nation_id
+                  type: bigint
+              - column:
+                  name: created_by
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_modified_by
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: "00000000000002"
+      author: michele.salvucci
+      changes:
+        - createTable:
+            tableName: pren_nations
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: valid
+                  type: boolean
+              - column:
+                  name: created_by
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_modified_by
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+      id: "00000000000003"
+      author: michele.salvucci
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: pren_cities
+            baseColumnNames: nation_id
+            referencedTableName: pren_nations
+            referencedColumnNames: id
+            constraintName: fk_nation_city

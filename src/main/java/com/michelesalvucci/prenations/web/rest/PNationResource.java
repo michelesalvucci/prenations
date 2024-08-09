@@ -5,6 +5,7 @@ import com.michelesalvucci.prenations.service.dto.PNNationDTO;
 import com.michelesalvucci.prenations.service.filter.PNNationFilterDTO;
 import com.michelesalvucci.prenations.service.impl.PNNationServiceImpl;
 import com.michelesalvucci.prenations.web.rest.headers.PNAlertHeader;
+import com.michelesalvucci.prenations.web.rest.responses.PNPageResponse;
 
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
@@ -129,10 +130,12 @@ public class PNationResource {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of nations in body.
      */
-    @GetMapping("")
-    public ResponseEntity<Page<PNNationDTO>> getAllNations(PNNationFilterDTO filter, Pageable pageable) {
+    @GetMapping
+    public ResponseEntity<PNPageResponse> getAllNations(PNNationFilterDTO filter, Pageable pageable) {
         log.debug("REST request to get all Nations");
-        return ResponseEntity.ok().body(nationService.findAll(filter, pageable));
+
+        Page<PNNationDTO> dbPage = nationService.findAll(filter, pageable);
+        return ResponseEntity.ok().body(new PNPageResponse(dbPage));
     }
 
     /**

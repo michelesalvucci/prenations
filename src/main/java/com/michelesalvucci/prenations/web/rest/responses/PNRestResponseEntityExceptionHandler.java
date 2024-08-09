@@ -1,4 +1,4 @@
-package com.michelesalvucci.prenations.web.rest.errors;
+package com.michelesalvucci.prenations.web.rest.responses;
 
 import jakarta.validation.ValidationException;
 import java.util.List;

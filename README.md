@@ -3,7 +3,7 @@ A simple (to be enriched) Java 17 Spring Boot JPA application.
 
 ## Feign Clients
 
-The service communicates with the "pre-people" service through FeignClient (`PRENPeopleFeignClient`).
+The service communicates with the "pre-people" service through FeignClient (`PNPeopleFeignClient`).
 
 ## Development
 
@@ -100,7 +100,6 @@ spring:
 - widely adopted across the industry for mobile apps, web APIs
 
 ## TODOs
-- unpair DTO paginate response and datasource Page class
 - tenant management with Hibernate filter
 - messages and responses internationalization
 - implement test

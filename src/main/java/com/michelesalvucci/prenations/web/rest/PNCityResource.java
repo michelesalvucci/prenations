@@ -5,6 +5,7 @@ import com.michelesalvucci.prenations.service.dto.PNCityDTO;
 import com.michelesalvucci.prenations.service.filter.PNCityFilterDTO;
 import com.michelesalvucci.prenations.service.impl.PNCityServiceImpl;
 import com.michelesalvucci.prenations.web.rest.headers.PNAlertHeader;
+import com.michelesalvucci.prenations.web.rest.responses.PNPageResponse;
 
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
@@ -128,9 +129,10 @@ public class PNCityResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cities in body.
      */
     @GetMapping
-    public ResponseEntity<Page<PNCityDTO>> getAllCities(PNCityFilterDTO filter, Pageable pageable) {
+    public ResponseEntity<PNPageResponse> getAllCities(PNCityFilterDTO filter, Pageable pageable) {
         log.debug("REST request to get all Cities");
-        return ResponseEntity.ok().body(cityService.findAll(filter, pageable));
+        Page<PNCityDTO> dbPage = cityService.findAll(filter, pageable);
+        return ResponseEntity.ok().body(new PNPageResponse(dbPage));
     }
 
     /**

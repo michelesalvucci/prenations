@@ -10,10 +10,11 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = { PNNationMapper.class })
 public interface PNCityMapper extends EntityMapper<PNCityDTO, PNCity> {
 
-    @Mapping(target = "nationId", source = "nation.id") // esemplificativo: non necessario per il campo nationId sulla entity
+    @Mapping(target = "nationId", source = "nation.id") // sample: not necessary for the readonly field on the entity
+    @Mapping(target = "nation.runtimePopulation", ignore = true)
     PNCityDTO toDto(PNCity s);
 
-    @Mapping(target = "nation.id", source = "nationId") // esemplificativo: non necessario per il campo nationId sulla entity
+    @Mapping(target = "nation.id", source = "nationId") // sample: not necessary for the readonly field on the entity
     @Mapping(target = "nation", ignore = true)
     PNCity toEntity(PNCityDTO cityDTO);
 }

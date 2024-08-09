@@ -1,5 +1,17 @@
 # Pre Nations
-A simple (to be enriched) Java 17 Spring Boot JPA application.
+A sample Java 17 Spring Boot JPA application.
+- **JPA** management with common `Specification` and custom `FilterField`
+- auditing awareness
+- API custom response management
+  - DTO
+  - Page DTO
+  - Exception handling of custom validations and `Jakarta` validations (in `@ControllerAdvice`)
+  - alert header
+- Entity-DTO mapping with **MapStruct**
+- Security authentication with **OICD** OAuth2 **Keycloack**
+- **multi-tenant** management with **Hibernate Filter** and **Aspect**
+
+Features goals in the *TODOs* section.
 
 ## Feign Clients
 

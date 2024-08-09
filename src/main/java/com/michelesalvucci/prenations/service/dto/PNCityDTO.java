@@ -19,7 +19,7 @@ public class PNCityDTO extends AbstractAuditingDTO {
     private Long population;
     
     @NotNull(message = "Nation is required")
-    private String nationId;
+    private Long nationId;
     
     private PNNationDTO nation;
 }

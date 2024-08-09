@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: "202408091620"
+      author: michele.salvucci
+      changes:
+        - createTable:
+            tableName: pren_users_tenants
+            columns:
+              - column:
+                  name: tenant_id
+                  type: varchar(100)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+  - changeSet:
+      id: "202408091625"
+      author: michele.salvucci
+      changes:
+        - addColumn:
+            tableName: pren_nations
+            columns:
+              - column:
+                  name: tenant_id
+                  type: varchar(100)
+                  defaultValue: 'default'
+                  constraints:
+                    nullable: false
+        - addColumn:
+            tableName: pren_cities
+            columns:
+              - column:
+                  name: tenant_id
+                  type: varchar(100)
+                  defaultValue: 'default'
+                  constraints:
+                    nullable: false

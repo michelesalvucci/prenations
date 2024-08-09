@@ -2,10 +2,10 @@ package com.michelesalvucci.prenations.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +16,7 @@ import java.util.Set;
 @Table(name = "pren_nations")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class PNNation extends AbstractAuditingEntity<Long> {
+public class PNNation extends PNTenantScopedAbstractAuditingEntity<Long> {
 
     private static final long serialVersionUID = 1L;
 

@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "pren_cities")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class PNCity extends AbstractAuditingEntity<Long> {
+public class PNCity extends PNTenantScopedAbstractAuditingEntity<Long> {
 
     private static final long serialVersionUID = 1L;
 

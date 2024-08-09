@@ -35,7 +35,7 @@ public final class SecurityUtils {
         } else if (authentication.getPrincipal() instanceof UserDetails springSecurityUser) {
             return springSecurityUser.getUsername();
         } else if (authentication.getPrincipal() instanceof Jwt jwt) {
-            return jwt.getSubject();
+            return jwt.getClaimAsString("preferred_username");
         } else if (authentication.getPrincipal() instanceof String s) {
             return s;
         }

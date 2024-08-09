@@ -50,6 +50,7 @@ To launch your application's tests, run:
 ```
 
 ## Authentication
+Authentication is managed via OICD protocol through Keycloak configuration.
 
 Following properties were set:
 
@@ -102,8 +103,10 @@ spring:
 ## TODOs
 - tenant management with Hibernate filter
 - messages and responses internationalization
-- implement test
-- mapper with findById (as sample)
+- test
+- authorities and roles with Keycloak
+- mapper with domain findById (as sample: Continent: Europe, Africa, etc...)
+- second level cache
 - Kafka messaging with Cloud Stream ? (https://www.baeldung.com/spring-cloud-stream)
 - dockerfile and compose to run the application in containerized environment
   - gateway to communicate with other services through Feign and Kafka

@@ -2,13 +2,15 @@ package com.michelesalvucci.prenations.service.impl;
 
 import com.michelesalvucci.prenations.domain.PNCity;
 import com.michelesalvucci.prenations.repository.PNCityRepository;
+import com.michelesalvucci.prenations.repository.PNNationRepository;
 import com.michelesalvucci.prenations.service.PNService;
 import com.michelesalvucci.prenations.service.dto.PNCityDTO;
 import com.michelesalvucci.prenations.service.filter.PNStandardSpecification;
 import com.michelesalvucci.prenations.service.mapper.PNCityMapper;
 
+import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
-
+import java.util.Objects;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,17 +25,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class PNCityServiceImpl implements PNService<Long, PNCityDTO> {
 
     private final PNCityRepository cityRepository;
-
+    private final PNNationRepository nationRepository;
     private final PNCityMapper cityMapper;
 
-    public PNCityServiceImpl(PNCityRepository cityRepository, PNCityMapper cityMapper) {
+    public PNCityServiceImpl(PNCityRepository cityRepository, PNCityMapper cityMapper, PNNationRepository nationRepository) {
         this.cityRepository = cityRepository;
+        this.nationRepository = nationRepository;
         this.cityMapper = cityMapper;
     }
 
     @Override
     public PNCityDTO save(PNCityDTO cityDTO) {
         log.debug("Request to save City : {}", cityDTO);
+
+        if (!nationRepository.existsById(cityDTO.getNationId())) {
+            throw new ValidationException("Nation not found");
+        }
+
         PNCity city = cityMapper.toEntity(cityDTO);
         city = cityRepository.save(city);
         return cityMapper.toDto(city);
@@ -42,6 +50,10 @@ public class PNCityServiceImpl implements PNService<Long, PNCityDTO> {
     @Override
     public Optional<PNCityDTO> partialUpdate(PNCityDTO cityDTO) {
         log.debug("Request to partially update City : {}", cityDTO);
+
+        if (Objects.nonNull(cityDTO.getNationId()) && !nationRepository.existsById(cityDTO.getNationId())) {
+            throw new ValidationException("Nation not found");
+        }
 
         return cityRepository
             .findById(cityDTO.getId())

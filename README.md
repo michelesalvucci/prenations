@@ -101,7 +101,6 @@ spring:
 - widely adopted across the industry for mobile apps, web APIs
 
 ## TODOs
-- tenant management with Hibernate filter
 - messages and responses internationalization
 - test
 - authorities and roles with Keycloak

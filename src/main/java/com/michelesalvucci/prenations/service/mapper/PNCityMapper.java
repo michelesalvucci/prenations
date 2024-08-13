@@ -16,5 +16,11 @@ public interface PNCityMapper extends EntityMapper<PNCityDTO, PNCity> {
 
     @Mapping(target = "nation.id", source = "nationId") // sample: not necessary for the readonly field on the entity
     @Mapping(target = "nation", ignore = true)
+    @Mapping(target = "tenantId", ignore = true)
     PNCity toEntity(PNCityDTO cityDTO);
+
+    @Named("partialUpdate")
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(target = "tenantId", ignore = true)
+    void partialUpdate(@MappingTarget PNCity entity, PNCityDTO dto);
 }

@@ -23,11 +23,13 @@ public abstract class PNNationMapper implements EntityMapper<PNNationDTO, PNNati
     public abstract PNNationDTO toDto(PNNation nation);
 
     @Mapping(target = "cities", ignore = true)
+    @Mapping(target = "tenantId", ignore = true)
     public abstract PNNation toEntity(PNNationDTO nationDTO);
 
     @Named("partialUpdate")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "cities", ignore = true)
+    @Mapping(target = "tenantId", ignore = true)
     public abstract void partialUpdate(@MappingTarget PNNation entity, PNNationDTO dto);
 
     /*

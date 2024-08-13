@@ -10,12 +10,9 @@ A sample Java 17 Spring Boot JPA application.
 - Entity-DTO mapping with **MapStruct**
 - Security authentication with **OICD** OAuth2 **Keycloack**
 - **multi-tenant** management with **Hibernate Filter** and **Aspect**
+- arranged communication with other services via `FeignClient`
 
 Features goals in the *TODOs* section.
-
-## Feign Clients
-
-The service communicates with the "pre-people" service through FeignClient (`PNPeopleFeignClient`).
 
 ## Development
 
@@ -112,8 +109,12 @@ spring:
 - extensive customization
 - widely adopted across the industry for mobile apps, web APIs
 
+## Feign Clients
+
+The service communicates with the "pre-people" service through FeignClient (`PNPeopleFeignClient`).
+
 ## TODOs
-- messages and responses internationalization
+- messages and responses internationalization 
 - test
 - authorities and roles with Keycloak
 - mapper with domain findById (as sample: Continent: Europe, Africa, etc...)

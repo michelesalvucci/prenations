@@ -10,6 +10,7 @@ import com.michelesalvucci.prenations.security.TenantContext;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,6 +26,13 @@ public abstract class PNTenantScopedAbstractAuditingEntity<T> extends AbstractAu
 
     @PrePersist
     public void prePersist() {
+        if (Objects.isNull(this.getTenantId())) {
+            this.setTenantId(TenantContext.getCurrentTenant());
+        }
+    }
+
+    @PreUpdate
+    public void preUpdate() {
         if (Objects.isNull(this.getTenantId())) {
             this.setTenantId(TenantContext.getCurrentTenant());
         }
